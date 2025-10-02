@@ -58,6 +58,7 @@ Files
 File: .gitignore
 ================
 *.csv
+output/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -580,18 +581,39 @@ class GA4WeekOverWeekAnalyzer:
             md_content.append(f"**Period:** {weeks[i+1].strftime('%b %d')} - {(weeks[i+1] + timedelta(days=6)).strftime('%b %d')} vs {weeks[i].strftime('%b %d')} - {(weeks[i] + timedelta(days=6)).strftime('%b %d')}\n")
             
             # Add warning if either week in comparison has missing dates
-            comparison_has_missing = False
             if (i+1) in missing_dates_info or (i+2) in missing_dates_info:
-                comparison_has_missing = True
                 md_content.append("\n⚠️ *This comparison includes incomplete week(s) - see Data Completeness Notice above.*\n")
             
-            # Channel performance
-            channel_data = channel_wow[channel_wow['Week_Comparison'] == week_comp]
+            # NEW: Full Channel Performance Table
+            channel_data = channel_wow[channel_wow['Week_Comparison'] == week_comp].copy()
             if not channel_data.empty:
-                md_content.append("\n#### Top Channel Changes\n")
+                md_content.append("\n#### Complete Channel Performance Table\n")
+                
+                # Sort by users change (descending)
+                channel_data = channel_data.sort_values('Users_Change', ascending=False)
+                
+                # Create markdown table
+                md_content.append("| Channel | Current Week Users | Previous Week Users | User Change | User Change % | Current Week Key Events | Previous Week Key Events | Key Event Change | Key Event Change % |\n")
+                md_content.append("|---------|-------------------:|--------------------:|------------:|--------------:|------------------------:|-------------------------:|-----------------:|-------------------:|\n")
+                
+                for _, row in channel_data.iterrows():
+                    md_content.append(f"| {row['Session Payscale Custom Channels']} | "
+                                    f"{row['Total users_current']:,.0f} | "
+                                    f"{row['Total users_previous']:,.0f} | "
+                                    f"{row['Users_Change']:+,.0f} | "
+                                    f"{row['Users_Change_Pct']:+.1f}% | "
+                                    f"{row['Key events_current']:,.0f} | "
+                                    f"{row['Key events_previous']:,.0f} | "
+                                    f"{row['Key_Events_Change']:+,.0f} | "
+                                    f"{row['Key_Events_Change_Pct']:+.1f}% |\n")
+                
+                md_content.append("\n")
+                
+                # Keep the existing top/bottom highlights for quick scanning
+                md_content.append("#### Top Channel Highlights\n")
                 
                 # Top gainers
-                top_gainers = channel_data.nlargest(3, 'Users_Change')
+                top_gainers = channel_data.head(3)
                 md_content.append("**Biggest User Increases:**\n")
                 for _, row in top_gainers.iterrows():
                     md_content.append(f"- **{row['Session Payscale Custom Channels']}**: "
@@ -599,7 +621,7 @@ class GA4WeekOverWeekAnalyzer:
                                     f"({row['Users_Change_Pct']:+.1f}%)\n")
                 
                 # Top decliners
-                top_decliners = channel_data.nsmallest(3, 'Users_Change')
+                top_decliners = channel_data.tail(3).iloc[::-1]  # Reverse to show worst first
                 md_content.append("\n**Biggest User Decreases:**\n")
                 for _, row in top_decliners.iterrows():
                     md_content.append(f"- **{row['Session Payscale Custom Channels']}**: "
@@ -684,7 +706,7 @@ class GA4WeekOverWeekAnalyzer:
         output_file = self.output_dir / 'executive_summary.md'
         with open(output_file, 'w', encoding='utf-8') as f:
             f.write(''.join(md_content))
-        print(f"Saved: {output_file}")
+        print(f"Saved: {output_file}")    
 
     def _generate_key_insights(self, channel_wow, sm_wow, lp_wow):
         """Generate key insights section."""
