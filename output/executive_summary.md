@@ -1,6 +1,6 @@
 # GA4 Week-over-Week Executive Summary
 **Analysis Period:** September 01, 2025 - September 30, 2025
-**Report Generated:** 2025-10-02 12:12:23
+**Report Generated:** 2025-10-02 12:20:41
 
 ⚠️ **Data Completeness Notice:**
 - **Week 5** (Sep 29 - Oct 05): Missing data for 5 day(s) - Oct 01, Oct 02, Oct 03, Oct 04, Oct 05
@@ -27,6 +27,7 @@ Jump to a specific week comparison:
 **Period:** Sep 08 - Sep 14 vs Sep 01 - Sep 07
 
 #### Complete Channel Performance Table
+
 | Channel | Current Week Users | Previous Week Users | User Change | User Change % | Current Week Key Events | Previous Week Key Events | Key Event Change | Key Event Change % |
 |---------|-------------------:|--------------------:|------------:|--------------:|------------------------:|-------------------------:|-----------------:|-------------------:|
 | Paid Search | 25,199 | 11,916 | +13,283 | +111.5% | 1,301 | 448 | +853 | +190.4% |
@@ -89,6 +90,7 @@ Jump to a specific week comparison:
 **Period:** Sep 15 - Sep 21 vs Sep 08 - Sep 14
 
 #### Complete Channel Performance Table
+
 | Channel | Current Week Users | Previous Week Users | User Change | User Change % | Current Week Key Events | Previous Week Key Events | Key Event Change | Key Event Change % |
 |---------|-------------------:|--------------------:|------------:|--------------:|------------------------:|-------------------------:|-----------------:|-------------------:|
 | Source/Medium Other | 1,749 | 838 | +911 | +108.7% | 181 | 24 | +157 | +654.2% |
@@ -151,6 +153,7 @@ Jump to a specific week comparison:
 **Period:** Sep 22 - Sep 28 vs Sep 15 - Sep 21
 
 #### Complete Channel Performance Table
+
 | Channel | Current Week Users | Previous Week Users | User Change | User Change % | Current Week Key Events | Previous Week Key Events | Key Event Change | Key Event Change % |
 |---------|-------------------:|--------------------:|------------:|--------------:|------------------------:|-------------------------:|-----------------:|-------------------:|
 | Referrals - Public Relations | 117 | 116 | +1 | +0.9% | 11 | 12 | -1 | -8.3% |
@@ -215,6 +218,7 @@ Jump to a specific week comparison:
 ⚠️ *This comparison includes incomplete week(s) - see Data Completeness Notice above.*
 
 #### Complete Channel Performance Table
+
 | Channel | Current Week Users | Previous Week Users | User Change | User Change % | Current Week Key Events | Previous Week Key Events | Key Event Change | Key Event Change % |
 |---------|-------------------:|--------------------:|------------:|--------------:|------------------------:|-------------------------:|-----------------:|-------------------:|
 | Paid Social | 42 | 115 | -73 | -63.5% | 0 | 1 | -1 | -100.0% |

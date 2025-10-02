@@ -338,6 +338,7 @@ class GA4WeekOverWeekAnalyzer:
             channel_data = channel_wow[channel_wow['Week_Comparison'] == week_comp].copy()
             if not channel_data.empty:
                 md_content.append("\n#### Complete Channel Performance Table\n")
+                md_content.append("\n")  # Add blank line before table
                 
                 # Sort by users change (descending)
                 channel_data = channel_data.sort_values('Users_Change', ascending=False)
