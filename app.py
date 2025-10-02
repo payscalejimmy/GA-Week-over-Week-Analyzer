@@ -299,6 +299,29 @@ class GA4WeekOverWeekAnalyzer:
         
         md_content.append("\n---\n")
         
+        # Add Week Comparison Index
+        md_content.append("## Week Comparison Index\n\n")
+        md_content.append("Jump to a specific week comparison:\n\n")
+        md_content.append("| Comparison | Current Week Period | Previous Week Period | Status |\n")
+        md_content.append("|------------|--------------------:|---------------------:|:------:|\n")
+        
+        for i in range(len(weeks) - 1):
+            week_comp = f"Week {i+2} vs Week {i+1}"
+            current_period = f"{weeks[i+1].strftime('%b %d')} - {(weeks[i+1] + timedelta(days=6)).strftime('%b %d, %Y')}"
+            previous_period = f"{weeks[i].strftime('%b %d')} - {(weeks[i] + timedelta(days=6)).strftime('%b %d, %Y')}"
+            
+            # Check if either week has missing data
+            status = "✓"
+            if (i+1) in missing_dates_info or (i+2) in missing_dates_info:
+                status = "⚠️"
+            
+            # Create anchor link (markdown converts headings to anchors automatically)
+            anchor = week_comp.lower().replace(' ', '-')
+            md_content.append(f"| [{week_comp}](#{anchor}) | {current_period} | {previous_period} | {status} |\n")
+        
+        md_content.append("\n*✓ = Complete data | ⚠️ = Incomplete week(s)*\n")
+        md_content.append("\n---\n")
+        
         # Overall metrics
         md_content.append("## Overall Performance\n")
         
@@ -433,7 +456,7 @@ class GA4WeekOverWeekAnalyzer:
         output_file = self.output_dir / 'executive_summary.md'
         with open(output_file, 'w', encoding='utf-8') as f:
             f.write(''.join(md_content))
-        print(f"Saved: {output_file}")    
+        print(f"Saved: {output_file}")  
 
     def _generate_key_insights(self, channel_wow, sm_wow, lp_wow):
         """Generate key insights section."""

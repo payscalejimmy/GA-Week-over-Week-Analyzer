@@ -1,11 +1,25 @@
 # GA4 Week-over-Week Executive Summary
 **Analysis Period:** September 01, 2025 - September 30, 2025
-**Report Generated:** 2025-10-02 10:18:49
+**Report Generated:** 2025-10-02 12:12:23
 
 ⚠️ **Data Completeness Notice:**
 - **Week 5** (Sep 29 - Oct 05): Missing data for 5 day(s) - Oct 01, Oct 02, Oct 03, Oct 04, Oct 05
 
 *Note: Comparisons involving incomplete weeks should be interpreted with caution.*
+
+---
+## Week Comparison Index
+
+Jump to a specific week comparison:
+
+| Comparison | Current Week Period | Previous Week Period | Status |
+|------------|--------------------:|---------------------:|:------:|
+| [Week 2 vs Week 1](#week-2-vs-week-1) | Sep 08 - Sep 14, 2025 | Sep 01 - Sep 07, 2025 | ✓ |
+| [Week 3 vs Week 2](#week-3-vs-week-2) | Sep 15 - Sep 21, 2025 | Sep 08 - Sep 14, 2025 | ✓ |
+| [Week 4 vs Week 3](#week-4-vs-week-3) | Sep 22 - Sep 28, 2025 | Sep 15 - Sep 21, 2025 | ✓ |
+| [Week 5 vs Week 4](#week-5-vs-week-4) | Sep 29 - Oct 05, 2025 | Sep 22 - Sep 28, 2025 | ⚠️ |
+
+*✓ = Complete data | ⚠️ = Incomplete week(s)*
 
 ---
 ## Overall Performance
