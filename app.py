@@ -285,7 +285,7 @@ class GA4WeekOverWeekAnalyzer:
         
         md_content = []
         md_content.append("# GA4 Week-over-Week Executive Summary")
-        md_content.append(f"\n**Analysis Period:** {weeks[0].strftime('%B %d, %Y')} - {weeks[-1].strftime('%B %d, %Y')}")
+        md_content.append(f"\n**Analysis Period:** {self.df['Date'].min().strftime('%B %d, %Y')} - {self.df['Date'].max().strftime('%B %d, %Y')}")
         md_content.append(f"\n**Report Generated:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         
         # Add data completeness warning if there are missing dates
@@ -323,7 +323,7 @@ class GA4WeekOverWeekAnalyzer:
                 md_content.append("**Biggest User Increases:**\n")
                 for _, row in top_gainers.iterrows():
                     md_content.append(f"- **{row['Session Payscale Custom Channels']}**: "
-                                    f"+{row['Users_Change']:,.0f} users "
+                                    f"{row['Users_Change']:+,.0f} users "
                                     f"({row['Users_Change_Pct']:+.1f}%)\n")
                 
                 # Top decliners
@@ -331,7 +331,7 @@ class GA4WeekOverWeekAnalyzer:
                 md_content.append("\n**Biggest User Decreases:**\n")
                 for _, row in top_decliners.iterrows():
                     md_content.append(f"- **{row['Session Payscale Custom Channels']}**: "
-                                    f"{row['Users_Change']:,.0f} users "
+                                    f"{row['Users_Change']:+,.0f} users "
                                     f"({row['Users_Change_Pct']:+.1f}%)\n")
             
             # Source/Medium insights
@@ -347,7 +347,7 @@ class GA4WeekOverWeekAnalyzer:
                     md_content.append("**Biggest Traffic Increases:**\n")
                     for _, row in top_sm_gainers.iterrows():
                         md_content.append(f"- **{row['Session source / medium']}**: "
-                                        f"+{row['Users_Change']:,.0f} users "
+                                        f"{row['Users_Change']:+,.0f} users "
                                         f"({row['Users_Change_Pct']:+.1f}%) | "
                                         f"{row['Key events_current']:.0f} key events\n")
             
@@ -364,7 +364,7 @@ class GA4WeekOverWeekAnalyzer:
                     md_content.append("**Highest Traffic Growth Pages:**\n")
                     for _, row in top_lp_gainers.iterrows():
                         md_content.append(f"- `{row['Page path and screen class']}`: "
-                                        f"+{row['Users_Change']:,.0f} users "
+                                        f"{row['Users_Change']:+,.0f} users "
                                         f"({row['Users_Change_Pct']:+.1f}%)\n")
             
             # Landing Page + Source/Medium combinations
@@ -381,7 +381,7 @@ class GA4WeekOverWeekAnalyzer:
                     for _, row in top_combos.iterrows():
                         parts = row['LP_Source'].split(' | ')
                         md_content.append(f"- **{parts[1]}** → `{parts[0]}`: "
-                                        f"+{row['Users_Change']:,.0f} users "
+                                        f"{row['Users_Change']:+,.0f} users "
                                         f"({row['Users_Change_Pct']:+.1f}%) | "
                                         f"{row['Key events_current']:.0f} conversions\n")
             
@@ -399,7 +399,7 @@ class GA4WeekOverWeekAnalyzer:
                     for _, row in top_channel_combos.iterrows():
                         parts = row['LP_Channel'].split(' | ')
                         md_content.append(f"- **{parts[1]}** → `{parts[0]}`: "
-                                        f"+{row['Users_Change']:,.0f} users "
+                                        f"{row['Users_Change']:+,.0f} users "
                                         f"({row['Users_Change_Pct']:+.1f}%)\n")
             
             md_content.append("\n---\n")
@@ -413,7 +413,7 @@ class GA4WeekOverWeekAnalyzer:
         with open(output_file, 'w', encoding='utf-8') as f:
             f.write(''.join(md_content))
         print(f"Saved: {output_file}")
-    
+
     def _generate_key_insights(self, channel_wow, sm_wow, lp_wow):
         """Generate key insights section."""
         insights = []
